@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compressed Foundation CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css"
+        crossorigin="anonymous">
+    <!--Link to my stylesheet-->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Weather Dashboard</title>
+</head>
+
+<body>
+
+    <div class="holy-grail-grid">
+        <div class="holy-grail-header">
+            <h1>Weather Dashboard</h1>
+        </div>
+
+        <div class="holy-grail-left">
+            <!-- Aside search bar -->
+            <h3>Search for a City:</h3>
+            <input type="text" id="searchCity" placeholder="San Diego"></input>
+            <a class="expanded button" id="searchCity" href="#">Search City</a>
+            <ul>
+                <li><a href="#">Boston</a></li>
+                <li><a href="#">Toronto</a></li>
+                <li><a href="#">Salt Lake City</a></li>
+            </ul>
+        </div>
+
+        <div class="holy-grail-middle">
+            <h3>Content</h3>
+            <div class="card">
+                <div class="card-section">
+                    <!-- Card for current weather conditions -->
+                    <h3 id="cityName">City Name</h3>
+                    <div id="currentWeather">container for current weather conditions</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-section">
+                    <!-- Card for future weather conditions -->
+                    <h4>5-Day Forecast</h4>
+                    <div id="futureWeather">container for future weather conditions</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="holy-grail-right">
+            <h3>Nav</h3>
+            <ul>
+                <li><a href="#">Current</a></li>
+                <li><a href="#">Future</a></li>
+                <li><a href="#">Back to top</a></li>
+            </ul>
+        </div>
+
+        <div class="holy-grail-footer">
+            <h4>Coded with love by Keri Sen</h4>
+        </div>
+
+    </div>
+
+    <!-- Compressed JQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- Compressed Foundation JavaScript CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/js/foundation.min.js"
+        crossorigin="anonymous"></script>
+    <!-- Compressed what-input CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/what-input/5.2.12/what-input.min.js"
+        integrity="sha512-jdMp80Gf2e7K/JH3+mucRwyeRaqRPD+ykSpkmbBqxWMMCfEZEL9PF0zzF3JEgV4IVNj6eTjV8X41e7Gz5nNwyA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!--Link to my JavaScript file-->
+    <script src="./assets/js/script.js"></script>
+
+</body>
+
+</html>
