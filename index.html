@@ -4,6 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google icons API -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- Google fonts API -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Goblin+One&family=Montserrat:wght@300&display=swap"
+        rel="stylesheet">
     <!-- Compressed Foundation CSS CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css"
         crossorigin="anonymous">
@@ -15,53 +23,120 @@
 <body>
 
     <div class="holy-grail-grid">
+        <!-- Top headline -->
         <div class="holy-grail-header">
             <h1>Weather Dashboard</h1>
         </div>
 
+        <!-- Aside search bar -->
         <div class="holy-grail-left">
-            <!-- Aside search bar -->
-            <h3>Search for a City:</h3>
-            <input type="text" id="searchCity" placeholder="San Diego"></input>
-            <a class="expanded button" id="searchCity" href="#">Search City</a>
-            <ul>
-                <li><a href="#">Boston</a></li>
-                <li><a href="#">Toronto</a></li>
-                <li><a href="#">Salt Lake City</a></li>
+            <form id="citysearch">
+                <h3>Search for a City:</h3>
+                <input id="inputCity" type="text" placeholder="San Diego"></input>
+                <a class="expanded button" id="searchCity" href="#"><span class="material-symbols-outlined">
+                        search
+                    </span></a>
+            </form>
+            <ul class="list-group">
+                <li class="list-group-item"><a href="#"><span class="material-symbols-outlined">
+                            saved_search
+                        </span>Boston</a></li>
+                <li class="list-group-item"><a href="#"><span class="material-symbols-outlined">
+                            saved_search
+                        </span>Montreal</a></li>
+                <li class="list-group-item"><a href="#"><span class="material-symbols-outlined">
+                            saved_search
+                        </span>Salt Lake City</a></li>
+                <li class="list-group-item"><a href="#"><span class="material-symbols-outlined">
+                            saved_search
+                        </span>San Diego</a></li>
             </ul>
         </div>
 
+        <!-- Main content -->
         <div class="holy-grail-middle">
-            <h3>Content</h3>
+            <h2 id="cityName">City Name</h2>
+            <h3>Current Conditions</h3>
             <div class="card">
+
                 <div class="card-section">
                     <!-- Card for current weather conditions -->
-                    <h3 id="cityName">City Name</h3>
-                    <div id="currentWeather">container for current weather conditions</div>
+
+                    <span class="material-symbols-outlined">
+                        sunny
+                    </span>
+                    <div id="currentWeather">
+                        <p>Temp: <span id="currentTemp"></span></p>
+                        <p>Wind: <span id="currentWind"></span></p>
+                        <p>Humidity: <span id="currentHumidity"></span></p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>5-Day Forecast</h3>
+            <div class="card">
+                <div class="card-section">
+                    <div id="day1">
+                        <h5>Temp: <span id="day1Temp"></span></h5>
+                        <h5>Wind: <span id="day1Wind"></span></h5>
+                        <h5>Humidity: <span id="day1Humidity"></span></h5>
+                    </div>
                 </div>
             </div>
             <div class="card">
                 <div class="card-section">
-                    <!-- Card for future weather conditions -->
-                    <h4>5-Day Forecast</h4>
-                    <div id="futureWeather">container for future weather conditions</div>
+                    <div id="day2">
+                        <h5>Temp: <span id="day2Temp"></span></h5>
+                        <h5>Wind: <span id="day2Wind"></span></h5>
+                        <h5>Humidity: <span id="day2Humidity"></span></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-section">
+                    <div id="day3">
+                        <h5>Temp: <span id="day3Temp"></span></h5>
+                        <h5>Wind: <span id="day3Wind"></span></h5>
+                        <h5>Humidity: <span id="day3Humidity"></span></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-section">
+                    <div id="day4">
+                        <h5>Temp: <span id="day4Temp"></span></h5>
+                        <h5>Wind: <span id="day4Wind"></span></h5>
+                        <h5>Humidity: <span id="day4Humidity"></span></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-section">
+                    <div id="day5">
+                        <h5>Temp: <span id="day5Temp"></span></h5>
+                        <h5>Wind: <span id="day5Wind"></span></h5>
+                        <h5>Humidity: <span id="day5Humidity"></span></h5>
+                    </div>
                 </div>
             </div>
         </div>
 
+        <!-- Aside for nice photo or something -->
         <div class="holy-grail-right">
-            <h3>Nav</h3>
-            <ul>
-                <li><a href="#">Current</a></li>
-                <li><a href="#">Future</a></li>
-                <li><a href="#">Back to top</a></li>
-            </ul>
+            <h3>Photo</h3>
+            <div class="card">
+                <div class="card-section">
+                    container for a nice picture
+                </div>
+            </div>
         </div>
 
+        <!-- Footer -->
         <div class="holy-grail-footer">
-            <h4>Coded with love by Keri Sen</h4>
+            <p>Coded with love by Keri Sen <span class="material-symbols-outlined">
+                    copyright
+                </span>2023</p>
         </div>
-
     </div>
 
     <!-- Compressed JQuery CDN -->
