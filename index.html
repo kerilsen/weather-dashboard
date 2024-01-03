@@ -44,11 +44,11 @@
                         search
                     </span></a>
             </form>
-            <ul class="list-group">
-                <li class="list-group-item"><a href="#">Boston</a></li>
+            <ul class="list-group" id="history">
+                <!-- <li class="list-group-item"><a href="#">Boston</a></li>
                 <li class="list-group-item"><a href="#">Montreal</a></li>
                 <li class="list-group-item"><a href="#">Salt Lake City</a></li>
-                <li class="list-group-item"><a href="#">San Diego</a></li>
+                <li class="list-group-item"><a href="#">San Diego</a></li> -->
             </ul>
         </div>
 
@@ -75,9 +75,9 @@
                 <div class="grid-x small-up-2 medium-up-3">
                     <div class="cell">
                         <div class="card">
-                            <div class="card-header"><span id="day1">Wednesday</span></div>
+                            <div class="card-header"><span id="day1"></span></div>
                             <div class="card-section">
-                                <img class="icon" src="https://openweathermap.org/img/wn/10d@2x.png" />
+                                <div id="icon1"></div>
                                 <div>
                                     <h5>Temp: <span id="day1temp"></span></h5>
                                     <h5>Wind: <span id="day1Wind"></span></h5>
@@ -88,9 +88,8 @@
                     </div>
                     <div class="cell">
                         <div class="card">
-                            <div class="card-header"><span id="day1">Wednesday</span></div>
-                            <div class="card-section">
-                                <img src="https://openweathermap.org/img/wn/10d@2x.png" />
+                            <div class="card-header"><span id="day2"></span></div>
+                            <div class="card-section"><div id="icon2"></div>
                                 <div>
                                     <h5>Temp: <span id="day2temp"></span></h5>
                                     <h5>Wind: <span id="day2Wind"></span></h5>
@@ -101,9 +100,9 @@
                     </div>
                     <div class="cell">
                         <div class="card">
-                            <div class="card-header"><span id="day1">Wednesday</span></div>
+                            <div class="card-header"><span id="day3"></span></div>
                             <div class="card-section">
-                                <img src="https://openweathermap.org/img/wn/10d@2x.png" />
+                                <div id="icon3"></div>
                                 <div>
                                     <h5>Temp: <span id="day3temp"></span></h5>
                                     <h5>Wind: <span id="day3Wind"></span></h5>
@@ -114,9 +113,9 @@
                     </div>
                     <div class="cell">
                         <div class="card">
-                            <div class="card-header"><span id="day1">Wednesday</span></div>
+                            <div class="card-header"><span id="day4"></span></div>
                             <div class="card-section">
-                                <img src="https://openweathermap.org/img/wn/10d@2x.png" />
+                                <div id="icon4"></div>
                                 <div>
                                     <h5>Temp: <span id="day4temp"></span></h5>
                                     <h5>Wind: <span id="day4Wind"></span></h5>
@@ -127,9 +126,9 @@
                     </div>
                     <div class="cell">
                         <div class="card">
-                            <div class="card-header"><span id="day1">Wednesday</span></div>
+                            <div class="card-header"><span id="day5"></span></div>
                             <div class="card-section">
-                                <img src="https://openweathermap.org/img/wn/10d@2x.png" />
+                                <div id="icon5"></div>
                                 <div>
                                     <h5>Temp: <span id="day5temp"></span></h5>
                                     <h5>Wind: <span id="day5Wind"></span></h5>
@@ -153,8 +152,8 @@
                     <span class="switch-active" aria-hidden="true">℉</span>
                 </label>
             </div>
-            <p>Sunset: <span id="sunrise"></span></p>
-            <p>Sunrise: <span id="sunset"></span></p>
+            <p>Sunrise: <span id="sunrise"></span></p>
+            <p>Sunset: <span id="sunset"></span></p>
             <h3 id="season">Winter</h3>
             <div class="card">
                 <div class="card-section">
@@ -167,7 +166,7 @@
 
         <!-- Footer -->
         <div class="holy-grail-footer">
-            <p>Coded with love by Keri Sen <span class="material-symbols-outlined">
+            <p>Coded with ❤️ by Keri Sen <span class="material-symbols-outlined">
                     copyright
                 </span>2024</p>
         </div>
