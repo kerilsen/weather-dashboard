@@ -2,6 +2,8 @@
 :root {
     --headline: 'Goblin One', serif;
     --body: 'Montserrat', sans-serif;
+    --light: #ededed;
+    --accent: #1779ba;
 }
 
 body {
@@ -15,7 +17,8 @@ h3 {
     font-family: var(--headline);
 }
 
-h1 {
+h1,
+h2 {
     text-align: center;
 }
 
@@ -54,8 +57,9 @@ footer {
 .holy-grail-right,
 .holy-grail-footer {
     padding: 1rem;
-    border: 1px solid #ededed;
-    background-color: #ededed;
+    border: 1px solid;
+    border-color: var(--light);
+    background-color: var(--light);
 }
 
 .holy-grail-header {
@@ -108,7 +112,9 @@ footer {
 
 .list-group {
     margin-bottom: 1rem;
-    border: 1px solid #e6e6e6;
+    margin-left: 0;
+    border: 1px solid;
+    border-color: var(--light);
     border-radius: 0;
     background: #fefefe;
     box-shadow: none;
@@ -122,7 +128,8 @@ footer {
 
 .list-group-item {
     padding: 1rem;
-    border-bottom: 1px solid #e6e6e6;
+    border-bottom: 1px solid;
+    border-color: var(--light);
 }
 
 .list-group-item> :last-child {
@@ -132,18 +139,19 @@ footer {
 
 .list-group-item.active {
     color: #fefefe;
-    background-color: #1779ba;
-    border-color: 1px solid #1779ba;
+    background-color: var(--accent);
+    border: 1px solid;
+    border-color: var(--accent);
 }
 
 .list-group-item:hover,
 .list-group-item:focus {
-    background-color: #e6e6e6;
+    background-color: var(--light);
 }
 
 .list-group-item:hover.active,
 .list-group-item:focus.active {
-    background-color: #1779ba;
+    background-color: var(--accent);
 }
 
 .list-group-item.disabled,
