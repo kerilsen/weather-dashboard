@@ -9,21 +9,35 @@ $(function () {
 
     const searchButton = document.getElementById('searchCity');
 
+    function clearContent(ID) {
+        document.getElementById(ID).innerHTML = "";
+    }
+
     function saveCity(x) {
         let city = x;
         $('#cityName').text(city);
         let storedCities = JSON.parse(localStorage.getItem("city")) || [];
         storedCities.push(x);
         let cityList = document.getElementById('history');
-        storedCities.forEach(item => {
+        storedCities.forEach(city => {
             let pastCity = document.createElement('li');
             pastCity.classList.add("list-group-item");
-            pastCity.textContent = item.city;
-            console.log("item.city is " + item.city);
-            cityList.appendChild(pastCity);
+            pastCity.textContent = city;
+            cityList.prepend(pastCity);
         })
         localStorage.setItem("city", JSON.stringify(storedCities));
     };
+
+    function addIcon(x, y) {
+        const icon = x.icon;
+        const altText = x.alt;
+        const iconURL = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+        const iconEl = document.createElement('img');
+        iconEl.src = iconURL;
+        iconEl.alt = altText;
+        const iconContainer = y;
+        iconContainer.appendChild(iconEl);
+    }
 
     function getCurrent(x, y) {
         let lat = x;
@@ -37,12 +51,20 @@ $(function () {
                 $('#currentTemp').text(Math.round(data.main.temp) + "°");
                 $('#currentWind').text(Math.round(data.wind.speed) + " mph");
                 $('#currentHumidity').text(data.main.humidity + "%");
-                let icon = data.weather[0].icon;
-                console.log("weather icon is " + icon);
+                const icon = data.weather[0].icon;
+                const altText = data.weather[0].alt;
+                const iconURL = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+                const iconEl = document.createElement('img');
+                iconEl.src = iconURL;
+                iconEl.alt = altText;
+                const iconContainer = document.getElementById('currentIcon');
+                iconContainer.appendChild(iconEl);
+                console.log("weather icon is " + icon + " and it means " + altText);
                 console.log(`img src = "https://openweathermap.org/img/wn/${icon}@2x.png"`);
-                let iconURL = `https://openweathermap.org/img/wn/${icon}@2x.png`;
-                $('#currentIcon').src = iconURL;
-                $('#currentIcon').alt = "not working";
+
+
+                // $('#currentIcon').html(`<img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt=${altText}`);
+                // $('currentIcon').html(`Hello`);
                 console.log(data);
             })
     };
@@ -61,6 +83,7 @@ $(function () {
                 console.log(data);
 
                 $('#day1').text(dayjs.unix(data.list[4].dt).format("ddd MMM D"));
+
                 $('#day1temp').text(Math.round(data.list[4].main.temp) + "°");
                 $('#day1Wind').text(Math.round(data.list[4].wind.speed) + " mph");
                 $('#day1Humidity').text(`${data.list[4].main.humidity}%`);
@@ -90,6 +113,8 @@ $(function () {
     searchButton.addEventListener("click", function () {
         const cityEl = document.getElementById("inputCity");
         const city = cityEl.value;
+        // clear icon container
+        $('currentIcon').html("");
         console.log("city input is " + city);
         const geocodingEndpoint = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${API_key}`;
         fetch(geocodingEndpoint)
@@ -98,9 +123,7 @@ $(function () {
             })
             .then(function (data) {
                 console.log(data);
-
                 data.forEach(city => {
-
                     saveCity(city.name);
                     console.log(city);
                     const lat = city.lat;
@@ -111,26 +134,5 @@ $(function () {
             })
             .catch(error => console.error('Error fetching data from Open Weather API:', error));
     })
-
     console.log("button clicked");
-
-    /* fetch(openWeather5Day)
-        .then(function (response) {
-            return response.json();
-        })
- 
-        .then(function (data) {
-            // work with all data in here
-            console.log(data);
-            const cityName = data.city.name;
-            console.log(cityName);
-            const fiveDay = data.list;
- 
-            fiveDay.forEach(item => {
-                // work with each item here
-                console.log(item);
-            })
- 
-        })
-        */
 });

@@ -4,11 +4,19 @@
     --body: 'Montserrat', sans-serif;
     --light: #ededed;
     --accent: #1779ba;
+    --lilac: rgb(182, 162, 181);
+    --pink: rgb(253, 236, 240);
+    --dark: rgb(168, 114, 152);
+    --offwhite: rgb(245, 239, 233);
+    --periwinkle: #B0C4DE;
+    --lightblue: #ADD8E6;
+    --paleblue: #E1EBEE;
 }
 
 body {
     font-size: xx-large;
     font-family: var(--body);
+    background-color: var(--lightblue);
 }
 
 h1,
@@ -59,7 +67,7 @@ footer {
     padding: 1rem;
     border: 1px solid;
     border-color: var(--light);
-    background-color: var(--light);
+    background-color: var(--paleblue);
 }
 
 .holy-grail-header {
