@@ -43,9 +43,12 @@
                 <a class="expanded button" id="searchCity" href="#"><span class="material-symbols-outlined">
                         search
                     </span></a>
+                <a class="expanded button" id="clearHistory" href="#"><span class="material-symbols-outlined">
+                        clear
+                    </span></a>
             </form>
             <ul class="list-group" id="history">
-               <!-- city search history -->
+                <!-- city search history dynamically created here -->
             </ul>
         </div>
 
@@ -54,6 +57,7 @@
             <div class="grid-container">
                 <h2 id="cityName"></h2>
                 <h3>Current Conditions</h3>
+
                 <!-- Card for current weather conditions -->
                 <div class="card">
                     <div class="card-section">
@@ -86,7 +90,8 @@
                     <div class="cell">
                         <div class="card">
                             <div class="card-header"><span id="day2"></span></div>
-                            <div class="card-section"><div id="icon2"></div>
+                            <div class="card-section">
+                                <div id="icon2"></div>
                                 <div>
                                     <h5>Temp: <span id="day2temp"></span></h5>
                                     <h5>Wind: <span id="day2Wind"></span></h5>
@@ -138,25 +143,27 @@
             </div>
         </div>
 
-        <!-- Aside for nice seasonal photo -->
+        <!-- Aside for seasonal photo -->
         <div class="holy-grail-right">
-            <p>Units</p>
+            <!-- Card for seasonal and/or daily weather photo API pull -->
+            <!-- <p>Units</p>
             <div class="switch large">
                 <input class="switch-input" id="yes-no" type="checkbox" name="unitsSwitch">
                 <label class="switch-paddle" for="yes-no">
                     <span class="show-for-sr">Metric or imperial measurements</span>
-                    <span class="switch-inactive" aria-hidden="true">℃</span>
-                    <span class="switch-active" aria-hidden="true">℉</span>
+                    <span class="switch-inactive" id="C" aria-hidden="true">℃</span>
+                    <span class="switch-active" id="F" aria-hidden="true">℉</span>
                 </label>
             </div>
             <p>Sunrise: <span id="sunrise"></span></p>
-            <p>Sunset: <span id="sunset"></span></p>
+            <p>Sunset: <span id="sunset"></span></p> -->
+            <!-- Card for seasonal and/or daily weather photo API pull -->
             <h3 id="season">Winter</h3>
             <div class="card">
                 <div class="card-section">
                     <img id="seasonPhoto"
                         src="https://images.unsplash.com/photo-1516035645781-9f126e774e9e?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        alt="photo of a path with autumn foliage" />
+                        alt="photo of tall bare trees in the snow" />
                 </div>
             </div>
         </div>
