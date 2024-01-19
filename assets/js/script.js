@@ -3,7 +3,9 @@ $(document).foundation();
 $(function () {
     const API_key = "a91de93fc5fcff0a9d6b724ff2c97849";
     const units = "imperial";
+
     // Switch button for Fahrenheit or Celsius for future development
+
     // let unit;
     // const F = document.getElementById('F');
     // if (F.classList === "switch-active")
@@ -14,15 +16,18 @@ $(function () {
     //     location.reload();
     // })
 
+    // Populating the current date at the top of the page
     $('#currentDay').text(dayjs().format('dddd, MMMM DD'));
     console.log(dayjs().format('dddd, MMMM DD'));
 
     const searchButton = document.getElementById('searchCity');
     const clearHistory = document.getElementById('clearHistory');
+     
+    let storedCities = JSON.parse(localStorage.getItem("city")) || [];
+    renderHistory();
 
-    function saveCity(city) {
-        let storedCities = JSON.parse(localStorage.getItem("city")) || [];
-        storedCities.push(city);
+    // Function that renders the search history on the left using stored values
+    function renderHistory() {
         let cityList = document.getElementById('history');
         storedCities.forEach(city => {
             let pastCity = document.createElement('li');
@@ -34,26 +39,35 @@ $(function () {
             pastCity.append(anchor);
             cityList.prepend(pastCity);
         })
+    }
+
+    // Function that appends the new city to the storedCities array and sends it back to storage
+    function saveCity(city) {
+       storedCities.push(city);
         localStorage.setItem("city", JSON.stringify(storedCities));
     };
 
     // Listener for click events on the search history items
-    const pastCities = document.querySelectorAll('.pastCities');
-    let storedCities = JSON.parse(localStorage.getItem("city")) || [];
-    pastCities.forEach(function (city) {
-        city.addEventListener('click', (event) => {
-            event.preventDefault();
+    const clickCities = document.querySelectorAll('.pastCities');
+    clickCities.forEach(function (clicked) {
+        clicked.addEventListener('click', (event) => {
+            // event.preventDefault();
             let target = event.currentTarget.textContent;
-            console.log("past city clicked");
-            storedCities.forEach(function (array) {
-                if (array[i] === city[0]) {
-                    getCurrent(city);
-                    getForecast(city)
+            console.log(target + " was clicked");
+            storedCities.forEach(storedCity => {
+                if (storedCity[0] === target) {
+                    console.log("stored city name is " + storedCity[0]);
+                    console.log("lat is " + storedCity[1]);
+                    console.log("lon is " + storedCity[2]);
+                    getCurrent(storedCity);
+                    getForecast(storedCity);
+                    return;
                 };
             });
         });
     });
 
+    // Function that generates a URL for the appropriate weather icon
     function addIcon(object, element) {
         element.innerHTML = "";
         const icon = object.icon;
@@ -65,6 +79,8 @@ $(function () {
         element.appendChild(iconEl);
     }
 
+    // Function to get current weather that gets called by the search button event listener and takes in a "city" array parameter
+    // city[name, lat, lon]
     function getCurrent(city) {
         let name = city[0];
         $('#cityName').text(name);
@@ -85,6 +101,8 @@ $(function () {
             })
     };
 
+    // Function to get 5 day forecast that gets called by the search button event listener and takes in a "city" array parameter
+    // city[name, lat, lon] 
     function getForecast(city) {
         let lat = city[1];
         let lon = city[2];
@@ -95,13 +113,13 @@ $(function () {
             })
             .then(function (data) {
                 // Fetch and display sunrise and sunset for future development
-                // Time shift algorithm isn't right
+                // Time shift isn't working correctly as is
                 // const sunrise = data.city.sunrise + (data.city.timezone / 60);
                 // $('#sunrise').text(dayjs.unix(sunrise).format("h:mm a"));
                 // const sunset = data.city.sunset + (data.city.timezone / 60);
                 // $('#sunset').text(dayjs.unix(sunset).format("h:mm a"));
                 console.log(data);
-
+           
                 $('#day1').text(dayjs.unix(data.list[4].dt).format("ddd MMM D"));
                 const icon1 = document.getElementById('icon1');
                 addIcon(data.list[4].weather[0], icon1);
@@ -139,15 +157,18 @@ $(function () {
             })
     };
 
+    // Clear history function that runs when user clicks on the "clear"/"X" button
     clearHistory.addEventListener("click", function () {
         localStorage.clear();
         location.reload();
     })
 
+    // Search function that runs when user enters a city and clicks the search button
     searchButton.addEventListener("click", function () {
         const cityEl = document.getElementById("inputCity");
         const city = cityEl.value;
         console.log("city input is " + city);
+        // Fetch request to geocoding to get the coordinates of the city name
         const geocodingEndpoint = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${API_key}`;
         fetch(geocodingEndpoint)
             .then(function (response) {
@@ -157,10 +178,13 @@ $(function () {
                 console.log(data);
                 data.forEach(city => {
                     console.log(city);
-                    const cityString = [city.name, city.lat, city.lon];
-                    saveCity(cityString);
-                    getCurrent(cityString);
-                    getForecast(cityString);
+                    // Create array to hold the city name, lat and lon and then send it to helper functions
+                    // that save the city to local storage and populates the search history for the user
+                    // as well as the current and 5-day forecast fields
+                    const cityArray = [city.name, city.lat, city.lon];
+                    saveCity(cityArray);
+                    getCurrent(cityArray);
+                    getForecast(cityArray);
                 })
             })
             .catch(error => console.error('Error fetching data from Open Weather API:', error));

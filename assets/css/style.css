@@ -14,7 +14,7 @@
 }
 
 body {
-    font-size: xx-large;
+    font-size: 12px;
     font-family: var(--body);
     background-color: var(--lightblue);
 }
@@ -23,6 +23,7 @@ h1,
 h2,
 h3 {
     font-family: var(--headline);
+    font-size: large;
 }
 
 h1,
