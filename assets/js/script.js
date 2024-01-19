@@ -51,7 +51,6 @@ $(function () {
     const clickCities = document.querySelectorAll('.pastCities');
     clickCities.forEach(function (clicked) {
         clicked.addEventListener('click', (event) => {
-            // event.preventDefault();
             let target = event.currentTarget.textContent;
             console.log(target + " was clicked");
             storedCities.forEach(storedCity => {
@@ -169,7 +168,7 @@ $(function () {
         const city = cityEl.value;
         console.log("city input is " + city);
         // Fetch request to geocoding to get the coordinates of the city name
-        const geocodingEndpoint = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${API_key}`;
+        const geocodingEndpoint = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${API_key}`;
         fetch(geocodingEndpoint)
             .then(function (response) {
                 return response.json();
