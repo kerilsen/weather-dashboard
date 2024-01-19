@@ -24,26 +24,27 @@ $(function () {
     const clearHistory = document.getElementById('clearHistory');
      
     let storedCities = JSON.parse(localStorage.getItem("city")) || [];
-    renderHistory();
-
+   
     // Function that renders the search history on the left using stored values
-    function renderHistory() {
-        let cityList = document.getElementById('history');
-        storedCities.forEach(city => {
-            let pastCity = document.createElement('li');
-            pastCity.classList.add("list-group-item");
-            let anchor = document.createElement('a');
-            anchor.href = "#";
-            anchor.text = city[0];
-            anchor.classList.add("pastCities");
-            pastCity.append(anchor);
-            cityList.prepend(pastCity);
-        })
+    let cityList = document.getElementById('history');
+
+    function renderHistory(name) {   
+        let pastCity = document.createElement('li');
+        pastCity.classList.add("list-group-item");
+        let anchor = document.createElement('a');
+        anchor.href = "#";
+        console.log("city is " + name);
+        // "city is undefined"
+        // console.log("city[0] is " + city[0]);
+        anchor.text = name;
+        anchor.classList.add("pastCities");
+        pastCity.append(anchor);
+        cityList.prepend(pastCity);
     }
 
     // Function that appends the new city to the storedCities array and sends it back to storage
     function saveCity(city) {
-       storedCities.push(city);
+        storedCities.push(city);
         localStorage.setItem("city", JSON.stringify(storedCities));
     };
 
@@ -164,6 +165,7 @@ $(function () {
 
     // Search function that runs when user enters a city and clicks the search button
     searchButton.addEventListener("click", function () {
+        renderHistory();
         const cityEl = document.getElementById("inputCity");
         const city = cityEl.value;
         console.log("city input is " + city);
@@ -181,9 +183,8 @@ $(function () {
                     // that save the city to local storage and populates the search history for the user
                     // as well as the current and 5-day forecast fields
                     const cityArray = [city.name, city.lat, city.lon];
-                    saveCity(cityArray);
-                    getCurrent(cityArray);
-                    getForecast(cityArray);
+                    saveCity, getCurrent, getForecast(cityArray);
+                    renderHistory(cityArray[0]);
                 })
             })
             .catch(error => console.error('Error fetching data from Open Weather API:', error));
