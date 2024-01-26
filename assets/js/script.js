@@ -10,7 +10,7 @@ $(function () {
     let storedCities = JSON.parse(localStorage.getItem("city")) || [];
     renderHistory();
 
-    function addCity(array) {
+    function renderCity(array) {
         let name = array[0];
         let pastCity = $("<li></li>").text(`${name}`).addClass('list-group-item');
         let anchor = $("<a></a>").addClass('pastCities');
@@ -22,17 +22,16 @@ $(function () {
     // Needs to first clear the previous values
     // Function that renders the search history using stored values
     function renderHistory() {
-        // const storedCities = JSON.parse(localStorage.getItem("city")) || [];
+        $('#history').empty();
         storedCities.forEach((city) => {
-            addCity(city);
+            renderCity(city);
         })
     }
 
-    // Function that appends the new city to the storedCities array and sends it back to storage
-    function saveCity(city) {
+    function storeCity(city) {
         storedCities.push(city);
         localStorage.setItem("city", JSON.stringify(storedCities));
-    };
+    }
 
     // Listener for click events on the search history items
     const pastCities = $('#history');
@@ -61,10 +60,10 @@ $(function () {
     }
 
     // Array is city[name, lat, lon, temp, wind, humidity]
-    function populateData(array, id) {
-        $(`#${id}Temp`).text(`${Math.round(array[3])}°F`);
-        $(`#${id}Wind`).text(`${Math.round(array[4])}mph`);
-        $(`#${id}Humidity`).text(`${array[5]}%`);
+    function populateData(newArray, id) {
+        $(`#${id}Temp`).text(`${Math.round(newArray[3])}°F`);
+        $(`#${id}Wind`).text(`${Math.round(newArray[4])}mph`);
+        $(`#${id}Humidity`).text(`${newArray[5]}%`);
     }
 
     // Function to get current weather that gets called by the search button event listener and takes in a "city" array parameter
@@ -73,14 +72,19 @@ $(function () {
         $('#cityName').text(array[0]);
         let lat = array[1];
         let lon = array[2];
+        console.log(`lat is ${lat} and lon is ${lon} and array is ${array}`);
         const openWeatherCurrent = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_key}&units=${units}`;
         fetch(openWeatherCurrent)
             .then(function (response) {
                 return response.json();
             })
             .then(function (data) {
-                array.push(data.main.temp, data.wind.speed, data.main.humidity);
-                populateData(array, "current");
+                let temp = [];
+                temp.push(...array);
+                console.log(`temp + array is ${temp}`);
+                temp.push(data.main.temp, data.wind.speed, data.main.humidity);
+                console.log(`temp with temperature, wind and humidity pushed is ${temp}`);
+                populateData(temp, "current");
                 addIcon(data.weather[0], "current");
                 console.log(data);
             })
@@ -102,25 +106,18 @@ $(function () {
                 let day = 1;
                 let length = data.list.length;
                 console.log(`list length is ${length}`);
-                // Caught in infinite loop where console will log 'The index is at 4' repeatedly
-                // for (let i = 4; i < 40; i + 8) 
-                // {
-                //     console.log("The index is at " + i);
-                // }
-                // End test code
-
-                // To replace the test code when for loop resolved
-                //   {  let temp = [];
-                //     let dayID = `#day${day}`;
-                //     console.log("dayID is " + dayID);
-                //     $(`${dayID}`).text(dayjs.unix(data.list[i].dt).format("ddd MMM D"));
-                //     temp = [...array];
-                //     temp.push(data.list[i].temp, data.list[i].wind.speed, data.list[i].humidity);
-                //     console.log(`temp array is ${temp}`);
-                //     populateData(temp, day);
-                //     addIcon(data.list[i].weather[0], day);
-                //     day++;
-                // }
+                for (let i = 4; i < length; i += 8) {
+                    let temp = [];
+                    let dayID = `day${day}`;
+                    console.log("dayID is " + dayID);
+                    $(`#${dayID}`).text(dayjs.unix(data.list[i].dt).format("ddd MMM D"));
+                    temp.push(...array);
+                    temp.push(data.list[i].main.temp, data.list[i].wind.speed, data.list[i].main.humidity);
+                    console.log(`temp array is ${temp} and day is ${dayID}`);
+                    populateData(temp, dayID);
+                    addIcon(data.list[i].weather[0], dayID);
+                    day++;
+                }
             })
             .catch((error) => {
                 console.error(`Error getting 5 day weather forecast: ${error}`);
@@ -155,8 +152,8 @@ $(function () {
                     let cityArray = [city.name, city.lat, city.lon];
                     getCurrent(cityArray);
                     getForecast(cityArray);
-                    saveCity(cityArray);
-                    renderHistory(cityArray[0]);
+                    storeCity(cityArray);
+                    renderCity(cityArray);
                 })
             })
             .catch(error => console.error('Error fetching data from Open Weather API:', error));
