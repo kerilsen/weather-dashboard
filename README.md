@@ -24,7 +24,7 @@ You type in the name of the city you would like to search and press the search b
 
 ## Credits
 
-N/A
+AskBCS helped me with an infinite for loop.
 
 ## License
 

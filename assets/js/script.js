@@ -7,20 +7,21 @@ $(function () {
     // Populating the current date at the top of the page
     $('#currentDay').text(dayjs().format('dddd, MMMM DD'));
 
+    // Setting a global variable for storedCities that is pulled out of local storage when page is loaded or set to empty
     let storedCities = JSON.parse(localStorage.getItem("city")) || [];
+
+    // Search history is rendered if available when page is loaded
     renderHistory();
 
+    // Helper function to add a new city to the search history
+    // Array parameter consists of city name, lat, lon
     function renderCity(array) {
         let name = array[0];
-        let pastCity = $("<li></li>").text(`${name}`).addClass('list-group-item');
-        let anchor = $("<a></a>").addClass('pastCities');
-        console.log(`city name is ${name}`);
-        pastCity.append(anchor);
+        let pastCity = $("<li><a></a></li>").text(`${name}`).addClass('list-group-item pastCities');
         $('#history').prepend(pastCity);
     }
 
-    // Needs to first clear the previous values
-    // Function that renders the search history using stored values
+    // Function that first clears the HTML list element then renders the search history using stored values
     function renderHistory() {
         $('#history').empty();
         storedCities.forEach((city) => {
@@ -28,23 +29,30 @@ $(function () {
         })
     }
 
+    // Helper function that stores a new searched city to local storage
     function storeCity(city) {
         storedCities.push(city);
         localStorage.setItem("city", JSON.stringify(storedCities));
     }
 
-    // Listener for click events on the search history items
-    const pastCities = $('#history');
-    pastCities.click(function (event) {
+    // Helper function that pulls a searched city out of local storage
+    // Sends the name, lat, lon to getCurrent and getForecast to repopulate data fields
+    function recoverCity(name) {
+        storedCities.forEach((city) => {
+            if (name.trim() == city[0].trim()) {
+                getCurrent(city);
+                getForecast(city);
+            }
+            else return;
+        });
+    }
+
+    // Listener for click events on the search history items that sends target text content to recoverCity function
+    $('#history').click(function (event) {
+        console.log(`history was clicked and target is ${event.target.textContent} and the class list is ${event.target.classList}`);
         if (event.target.classList.contains('pastCities')) {
             let pastCity = event.target.textContent;
-            storedCities.forEach((city) => {
-                if (pastCity.trim() == city[0].trim()) {
-                    getCurrent(city);
-                    getForecast(city);
-                }
-                else return;
-            })
+            recoverCity(pastCity);
         }
         else return;
     });
@@ -59,7 +67,7 @@ $(function () {
         $(`${elementID}`).append(image);
     }
 
-    // Array is city[name, lat, lon, temp, wind, humidity]
+    // New array is city[name, lat, lon, temp, wind, humidity]
     function populateData(newArray, id) {
         $(`#${id}Temp`).text(`${Math.round(newArray[3])}°F`);
         $(`#${id}Wind`).text(`${Math.round(newArray[4])}mph`);
@@ -91,7 +99,7 @@ $(function () {
             .catch(error => console.error('Error fetching data from Open Weather API:', error));
     };
 
-    // Function to get 5 day forecast that gets called by the search button event listener and takes in a "city" array parameter
+    // Function to get 5 day forecast that gets called by the search button event listener and recoverCity function and takes in a "city" array parameter
     // city[name, lat, lon] 
     function getForecast(array) {
         let lat = array[1];
