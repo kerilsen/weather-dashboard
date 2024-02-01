@@ -10,7 +10,7 @@ I tried adding sunrise and sunset times, but was having trouble figuring out the
 
 ## Installation
 
-The website is deployed here: ![https://kerilsen.github.io/weather-dashboard] (https://kerilsen.github.io/weather-dashboard)
+The website is deployed here: [https://kerilsen.github.io/weather-dashboard] (https://kerilsen.github.io/weather-dashboard)
 
 ## Usage
 
