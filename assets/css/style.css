@@ -1,63 +1,65 @@
 /* My styling */
 :root {
-    --headline: 'Goblin One', serif;
-    --body: 'Montserrat', sans-serif;
-    --light: #ededed;
-    --accent: #1779ba;
-    --lilac: rgb(182, 162, 181);
-    --pink: rgb(253, 236, 240);
-    --dark: rgb(168, 114, 152);
-    --offwhite: rgb(245, 239, 233);
-    --periwinkle: #B0C4DE;
-    --lightblue: #ADD8E6;
-    --paleblue: #E1EBEE;
+  --headline: "Goblin One", serif;
+  --body: "Montserrat", sans-serif;
+  --light: #ededed;
+  --accent: #1779ba;
+  --lilac: rgb(182, 162, 181);
+  --pink: rgb(253, 236, 240);
+  --dark: rgb(168, 114, 152);
+  --offwhite: rgb(245, 239, 233);
+  --periwinkle: #b0c4de;
+  --lightblue: #add8e6;
+  --paleblue: #e1ebee;
 }
 
 body {
-    font-size: 12px;
-    font-family: var(--body);
-    background-color: var(--lightblue);
+  font-size: 12px;
+  font-family: var(--body);
+  background-image: url("../images/blue-sky.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 h1,
 h2,
 h3 {
-    font-family: var(--headline);
-    font-size: large;
+  font-family: var(--headline);
+  font-size: large;
 }
 
 h1,
 h2 {
-    text-align: center;
+  text-align: center;
 }
 
 h4,
 h5 {
-    font-family: var(--body);
+  font-family: var(--body);
 }
 
 footer {
-    text-align: right;
+  text-align: right;
 }
 
 /* Foundation styling for layout */
 
 .holy-grail-grid {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: 1fr 3fr 1fr;
-    grid-template-columns: 1fr 3fr 1fr;
-    -ms-grid-rows: 1fr 8fr 1fr;
-    grid-template-rows: 1fr 8fr 1fr;
-    grid-gap: 20px;
-    height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 3fr 1fr;
+  -ms-grid-rows: 1fr 8fr 1fr;
+  grid-template-rows: 1fr 8fr 1fr;
+  grid-gap: 20px;
+  height: 100vh;
 }
 
 @media screen and (max-width: 60em) {
-    .holy-grail-grid {
-        -ms-grid-rows: 2fr 1fr 5fr 1fr;
-        grid-template-rows: 2fr 1fr 5fr 1fr;
-    }
+  .holy-grail-grid {
+    -ms-grid-rows: 2fr 1fr 5fr 1fr;
+    grid-template-rows: 2fr 1fr 5fr 1fr;
+  }
 }
 
 .holy-grail-header,
@@ -65,102 +67,103 @@ footer {
 .holy-grail-middle,
 .holy-grail-right,
 .holy-grail-footer {
-    padding: 1rem;
-    border: 1px solid;
-    border-color: var(--light);
-    background-color: var(--paleblue);
+  padding: 1rem;
+  border: 1px solid;
+  border-color: var(--light);
+  background-color: var(--paleblue);
+  opacity: 0.9;
 }
 
 .holy-grail-header {
+  -ms-grid-column: 1;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  -ms-grid-row: 1;
+  grid-row-start: 1;
+}
+
+@media screen and (max-width: 60em) {
+  .holy-grail-left {
+    -ms-grid-row: 2;
+    grid-row-start: 2;
     -ms-grid-column: 1;
     grid-column-start: 1;
     grid-column-end: 4;
-    -ms-grid-row: 1;
-    grid-row-start: 1;
+  }
 }
 
 @media screen and (max-width: 60em) {
-    .holy-grail-left {
-        -ms-grid-row: 2;
-        grid-row-start: 2;
-        -ms-grid-column: 1;
-        grid-column-start: 1;
-        grid-column-end: 4;
-    }
+  .holy-grail-middle {
+    -ms-grid-row: 3;
+    grid-row-start: 3;
+    -ms-grid-column: 1;
+    grid-column-start: 1;
+    grid-column-end: 4;
+  }
 }
 
 @media screen and (max-width: 60em) {
-    .holy-grail-middle {
-        -ms-grid-row: 3;
-        grid-row-start: 3;
-        -ms-grid-column: 1;
-        grid-column-start: 1;
-        grid-column-end: 4;
-    }
-}
-
-@media screen and (max-width: 60em) {
-    .right-nav {
-        -ms-grid-row: 4;
-        grid-row-start: 4;
-        -ms-grid-column: 1;
-        grid-column-start: 1;
-        grid-column-end: 4;
-    }
+  .right-nav {
+    -ms-grid-row: 4;
+    grid-row-start: 4;
+    -ms-grid-column: 1;
+    grid-column-start: 1;
+    grid-column-end: 4;
+  }
 }
 
 .holy-grail-footer {
-    -ms-grid-column: 1;
-    grid-column-start: 1;
-    grid-column-end: 4;
-    /* my styling */
-    text-align: center;
+  -ms-grid-column: 1;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  /* my styling */
+  text-align: center;
 }
 
 /* Foundation list group styling */
 
 .list-group {
-    margin-bottom: 1rem;
-    margin-left: 0;
-    border: 1px solid;
-    border-color: var(--light);
-    border-radius: 0;
-    background: #fefefe;
-    box-shadow: none;
-    overflow: hidden;
-    color: #0a0a0a;
+  margin-bottom: 1rem;
+  margin-left: 0;
+  border: 1px solid;
+  border-color: var(--light);
+  border-radius: 0;
+  background: #fefefe;
+  box-shadow: none;
+  overflow: hidden;
+  color: #0a0a0a;
 }
 
-.list-group> :last-child {
-    margin-bottom: 0;
+.list-group > :last-child {
+  margin-bottom: 0;
 }
 
 .list-group-item {
-    padding: 1rem;
-    border-bottom: 1px solid;
-    border-color: var(--light);
+  padding: 1rem;
+  border-bottom: 1px solid;
+  border-color: var(--light);
 }
 
-.list-group-item> :last-child {
-    margin-bottom: 0;
-    border-bottom: none;
+.list-group-item > :last-child {
+  margin-bottom: 0;
+  border-bottom: none;
 }
 
 .list-group-item.active {
-    color: #fefefe;
-    background-color: var(--accent);
-    border: 1px solid;
-    border-color: var(--accent);
+  color: #fefefe;
+  background-color: var(--accent);
+  border: 1px solid;
+  border-color: var(--accent);
 }
 
 .list-group-item:hover,
 .list-group-item:focus {
-    background-color: var(--light);
+  background-color: var(--light);
 }
 
 .list-group-item:hover.active,
 .list-group-item:focus.active {
-    background-color: var(--accent);
+  background-color: var(--accent);
 }
 
 .list-group-item.disabled,
@@ -169,17 +172,13 @@ footer {
 .list-group-item[disabled],
 .list-group-item[disabled]:hover,
 .list-group-item[disabled]:focus {
-    color: #8a8a8a;
-    cursor: not-allowed;
-    background-color: #fefefe;
+  color: #8a8a8a;
+  cursor: not-allowed;
+  background-color: #fefefe;
 }
 
 /* Google icons styling */
 
 .material-symbols-outlined {
-    font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 24
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
 }
