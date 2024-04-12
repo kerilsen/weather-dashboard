@@ -14,28 +14,28 @@ $(function () {
     case 1: // February
     case 2: // March
       $("#season").text("Winter");
-      $("#seasonPhoto").attr("src", "../assets/images/winter.jpg");
+      $("#seasonPhoto").attr("src", "./assets/images/winter.jpg");
       $("#seasonPhoto").attr("alt", "Sparrow on a branch in the snow");
       break;
     case 3: // April
     case 4: // May
     case 5: // June
       $("#season").text("Spring");
-      $("#seasonPhoto").attr("src", "../assets/images/spring.jpg");
+      $("#seasonPhoto").attr("src", "./assets/images/spring.jpg");
       $("#seasonPhoto").attr("alt", "Pink daisies on a blue sky");
       break;
     case 6: // July
     case 7: // August
     case 8: // September
       $("#season").text("Summer");
-      $("#seasonPhoto").attr("src", "../assets/images/summer.jpg");
+      $("#seasonPhoto").attr("src", "./assets/images/summer.jpg");
       $("#seasonPhoto").attr("alt", "A flamingo pool toy in water");
       break;
     case 9: // October
     case 10: // November
     case 11: // December
       $("#season").text("Autumn");
-      $("#seasonPhoto").attr("src", "../assets/images/fall.jpg");
+      $("#seasonPhoto").attr("src", "./assets/images/fall.jpg");
       $("#seasonPhoto").attr("alt", "Autumn leaves flying up off the ground");
       break;
     default:
